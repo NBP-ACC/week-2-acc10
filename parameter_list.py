@@ -9,7 +9,7 @@ pygame.init()
 #small screen size
 SCREENSIZE = (800,600)
 #Get current resolution of screen
-infoObject = pygame.display.Info()
+infoObject = pygame.display.Info()l
 #set screen size based on size of monitor
 SCREEN = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
 # SCREEN = pygame.display.set_mode(SCREENSIZE)
@@ -51,17 +51,19 @@ FONTSIZE = 60
 # Set number of trials in the experiment
 # How should you name the variable?
 # TODO
+NUMTRIAL = 100
 
 # Set number of nogo trials in the experiment
 # How should you name the variable?
 # TODO
+PCT_NOGO = 0.2
 
 # Set the time interval in seconds of the delay
 # from end of trial n and beginning of trial n+1
 TRIALINTERVAL = 1
 
 #Set the time interval in milliseconds of the delay
-#from end of trial n and beginning of trial n+1
+#from end of trial n and beginning of trial n+1l
 TRIALINTERVAL = 500
 
 #Frames per second of the experiment
@@ -71,3 +73,7 @@ FPS = 60
 # where the experiment data for each subject is saved
 # before creating it check if the directory 'Data' already exists
 # TODO
+try:
+    os.mkdir('Data')
+except OSError as err:
+    print("Creation of the directory has failed. Maybe it already exists!")

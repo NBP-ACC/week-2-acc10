@@ -50,8 +50,6 @@ def message_display(text):
     if buttonpress == 1:
         return 1
 
-
-
 #draw fixation cross
 def draw_fixation():
     """
@@ -61,6 +59,7 @@ def draw_fixation():
     SCREEN.fill(BG_COLOR)
     pygame.draw.line(SCREEN,WHITE, VLINE[0], VLINE[1],VLINE[2])
     pygame.draw.line(SCREEN,WHITE, HLINE[0], HLINE[1],HLINE[2])
+
 
 def fill_background():
     SCREEN.fill(BG_COLOR)
@@ -75,6 +74,13 @@ def writeData(datalist, subID):
     # and write each entry of datalist to a single row
     # TODO
 
+    with open('/home/yasar/Documents/UNI/6. Semester/AC Computational Cognition/02/week-2-acc10/Data/Sub%s.csv' %subID, 'w') as csvFile:
+        writer = csv.writer(csvFile)
+        header = ["SubjectID", "StimulusType", "response", "RT"]
+        writer.writerow(header)
+        for trial in datalist:
+            writer.writerow(trial)
+    csvFile.close()
 
 ######                 main experiment loop            ##########
 def experiment(subID):
@@ -122,8 +128,8 @@ def experiment(subID):
                         if event.type == pygame.KEYDOWN:
                             if event.key == pygame.K_SPACE:
                                 # Time elapsed from stimulus to button press
-                                RT = # TODO
-                                response = # TODO
+                                RT = pygame.time.get_ticks() - start # TODO
+                                response = 1 # TODO
 
                 fill_background()# clear the screen
                 pygame.display.flip()
@@ -131,12 +137,14 @@ def experiment(subID):
                 dataFile.append([subID, stim, response, RT]) #append the data to the datafile
 
         done = True
-
     return dataFile
 
 if __name__ == "__main__":
     #Fill this before start of the experiment
-    subID = # TODO ID of the subject
+ #NUMTRIAL = input('Enter the number of trials: ')
+ #NUMTRIAL = int(NUMTRIAL)
+    subID = int(input('Enter the participant number: '))
+#    subID = int(subID)
     dataFile = experiment(subID)
     print('*'*30)
     print('Writing in data file: Sub{}.csv'.format(subID))
