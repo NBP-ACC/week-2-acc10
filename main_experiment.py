@@ -140,8 +140,6 @@ def experiment(subID):
                                 # Time elapsed from stimulus to button press
                                 RT = pygame.time.get_ticks() - start # current time minus start time is reaction time
                                 response = 1 # K_SPACE is pressed
-                                RT = pygame.time.get_ticks() - start # TODO
-                                response = 1 # TODO
 
 
                 fill_background()# clear the screen
@@ -154,7 +152,7 @@ def experiment(subID):
 
 if __name__ == "__main__":
     #Fill this before start of the experiment
-    subID = 'SubjectSimon02'
+    subID = 'SubjectID'
     dataFile = experiment(subID)
     print('*'*30)
     print('Writing in data file: Sub{}.csv'.format(subID))
