@@ -11,9 +11,9 @@ SCREENSIZE = (800,600)
 #Get current resolution of screen
 infoObject = pygame.display.Info()
 #set screen size based on size of monitor
-SCREEN = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
-# SCREEN = pygame.display.set_mode(SCREENSIZE)
-# SCREEN = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+#SCREEN = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+SCREEN = pygame.display.set_mode(SCREENSIZE)
+#SCREEN = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
 
 
 #Get width and height of the screen at fullscreen mode
@@ -62,8 +62,8 @@ PCT_NOGO = 0.2
 # from end of trial n and beginning of trial n+1
 TRIALINTERVAL = 1
 
-#Set the time interval in milliseconds of the delay
-#from end of trial n and beginning of trial n+1l
+# Set the time interval in milliseconds of the delay
+# from end of trial n and beginning of trial n+1
 TRIALINTERVAL = 500
 
 #Frames per second of the experiment
@@ -72,8 +72,11 @@ FPS = 60
 # Create a directory called 'Data' in your working-directory
 # where the experiment data for each subject is saved
 # before creating it check if the directory 'Data' already exists
-# TODO
-try:
-    os.mkdir('Data')
-except OSError as err:
-    print("Creation of the directory has failed. Maybe it already exists!")
+dirName = 'Data'
+
+# Create target Directory if don't exist
+if not os.path.exists(dirName):
+    os.mkdir(dirName)
+    print("Directory " , dirName ,  " Created ")
+else:
+    print("Directory " , dirName ,  " already exists")

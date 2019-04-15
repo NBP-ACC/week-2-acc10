@@ -72,7 +72,17 @@ def writeData(datalist, subID):
     # create a csvfile for each subject and name it: Sub[subID].csv
     # add a header ('SubjectID','StimulusType','response','RT') to the csvfile
     # and write each entry of datalist to a single row
-    # TODO
+    header = ["SubjectID", "StimulusType", "Response", "RT"]
+    #open path and create the csvfile
+    with open('Data\\Sub %s .csv' %subID, 'w') as csvfile:
+        #use the csv writer function to write the object
+        writer = csv.writer(csvfile, delimiter = ",")
+        #write the header-row
+        writer.writerow(header)
+        #write down the data collected in the list, one row for each trail
+        writer.writerows(datalist)
+        #don't forget to close the file!
+        csvfile.close()
 
     with open('/home/yasar/Documents/UNI/6. Semester/AC Computational Cognition/02/week-2-acc10/Data/Sub%s.csv' %subID, 'w') as csvFile:
         writer = csv.writer(csvFile)
@@ -128,8 +138,11 @@ def experiment(subID):
                         if event.type == pygame.KEYDOWN:
                             if event.key == pygame.K_SPACE:
                                 # Time elapsed from stimulus to button press
+                                RT = pygame.time.get_ticks() - start # current time minus start time is reaction time
+                                response = 1 # K_SPACE is pressed
                                 RT = pygame.time.get_ticks() - start # TODO
                                 response = 1 # TODO
+
 
                 fill_background()# clear the screen
                 pygame.display.flip()
@@ -141,10 +154,7 @@ def experiment(subID):
 
 if __name__ == "__main__":
     #Fill this before start of the experiment
- #NUMTRIAL = input('Enter the number of trials: ')
- #NUMTRIAL = int(NUMTRIAL)
-    subID = int(input('Enter the participant number: '))
-#    subID = int(subID)
+    subID = '008'
     dataFile = experiment(subID)
     print('*'*30)
     print('Writing in data file: Sub{}.csv'.format(subID))
