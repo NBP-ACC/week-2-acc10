@@ -84,7 +84,7 @@ def writeData(datalist, subID):
         #don't forget to close the file!
         csvfile.close()
 
-    with open('/home/yasar/Documents/UNI/6. Semester/AC Computational Cognition/02/week-2-acc10/Data/Sub%s.csv' %subID, 'w') as csvFile:
+    with open('Data/Sub%s.csv' %subID, 'w') as csvFile:
         writer = csv.writer(csvFile)
         header = ["SubjectID", "StimulusType", "response", "RT"]
         writer.writerow(header)
@@ -154,7 +154,7 @@ def experiment(subID):
 
 if __name__ == "__main__":
     #Fill this before start of the experiment
-    subID = '02'
+    subID = 'SubjectSimon02'
     dataFile = experiment(subID)
     print('*'*30)
     print('Writing in data file: Sub{}.csv'.format(subID))
