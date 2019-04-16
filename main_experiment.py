@@ -84,14 +84,6 @@ def writeData(datalist, subID):
         #don't forget to close the file!
         csvfile.close()
 
-    with open('Data/Sub%s.csv' %subID, 'w') as csvFile:
-        writer = csv.writer(csvFile)
-        header = ["SubjectID", "StimulusType", "response", "RT"]
-        writer.writerow(header)
-        for trial in datalist:
-            writer.writerow(trial)
-    csvFile.close()
-
 ######                 main experiment loop            ##########
 def experiment(subID):
     #List where all the repsonses are stored
@@ -152,7 +144,7 @@ def experiment(subID):
 
 if __name__ == "__main__":
     #Fill this before start of the experiment
-    subID = '04'
+    subID = int(input('Enter the participant number: '))
     dataFile = experiment(subID)
     print('*'*30)
     print('Writing in data file: Sub{}.csv'.format(subID))
